@@ -76,7 +76,7 @@ function Carousel(
       type="button"
       key={e._id}
       onClick={() => setIndex(i)}
-      className="rounded-full bg-neutral-400 active:bg-white p-2 mx-5 my-36"></button>
+      className={"rounded-full border-white border-2 bg-white p-2 mx-5 my-36 " + (currentIndex == i ? "bg-opacity-100" : "bg-opacity-55")}></button>
   ));
 
   return (
