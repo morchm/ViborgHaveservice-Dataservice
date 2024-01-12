@@ -9,7 +9,7 @@ export default function Navbar() {
         </li>
 
         <li className="hover:text-black cursor-pointer">
-            <Link href="/ReviewPages/reviews">Reviews</Link>
+            <Link href="/reviews/reviewsAll">Reviews</Link>
         </li>
 
         <li className="hover:text-black cursor-pointer">
