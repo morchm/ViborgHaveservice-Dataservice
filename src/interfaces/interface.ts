@@ -32,3 +32,65 @@ export interface ReviewPOST extends ModifyRequest {
 export interface ReviewDELETE extends ModifyRequest {
   slettet: boolean;
 }
+
+// ---------- OPENWEATHER INTERFACES -----------
+export interface OpenWeather {
+  dt: number;
+  main: {
+    temp: number;
+    feels_like: number;
+    temp_min: number;
+    temp_max: number;
+    pressure: number;
+    sea_level: number;
+    grnd_level: number;
+    humidity: number;
+    temp_kf: number;
+  };
+  weather: [
+    {
+      id: number;
+      main: string;
+      description: string;
+      icon: string;
+    }
+  ];
+  clouds: {
+    all: number;
+  };
+  wind: {
+    speed: number;
+    deg: number;
+    gust: number;
+  };
+  visibility: number;
+  pop: number;
+  sys: {
+    pod: string;
+  };
+  dt_txt: string;
+}
+
+ export interface OpenWeatherResponse {
+  cod: string;
+  message: number;
+  cnt: number;
+  list: [OpenWeather];
+  city: OpenWeatherCity;
+}
+
+export interface OpenWeatherCity {
+  id: number;
+  name: string;
+  coord: OpenWeatherCoords;
+  country: string;
+  population: number;
+  timezone: number;
+  sunrise: number;
+  sunset: number;
+}
+
+interface OpenWeatherCoords {
+  lat: number;
+  lon: number;
+}

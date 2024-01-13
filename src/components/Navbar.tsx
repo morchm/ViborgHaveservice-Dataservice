@@ -8,9 +8,16 @@ export default function Navbar() {
             <Link href="/">Service</Link>
         </li>
 
-        <li className="hover:text-black cursor-pointer">
-            <Link href="/reviews/reviewsAll">Reviews</Link>
-        </li>
+        <div className="dropdown">
+          <button  className="hover:text-black cursor-pointer">Reviews</button>
+          <div className="dropdown-content">
+            <li>
+                <Link href="/reviews/reviewsAll">Alle anmeldelser</Link>
+                <Link href="/reviews/reviewsAdmin">Anmeldelser - Admin</Link>
+                <Link href="/reviews/reviewsCreate">Ny anmeldelse</Link>
+            </li>
+          </div>
+        </div>
 
         <li className="hover:text-black cursor-pointer">
             <Link href="/">Vejret</Link>

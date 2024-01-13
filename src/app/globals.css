@@ -1,14 +1,12 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
   --mainGreen: #6cb04c;
 }
-
 
 .mainGreenText {
   color: var(--mainGreen);
@@ -18,7 +16,6 @@
   background-color: var(--mainGreen);
 }
 
-// ----- NAVBAR -----
 .navbar a {
   float: left;
 }
@@ -56,24 +53,19 @@
   display: block;
 }
 
-// ----- ABOUT US PAGE ----
 #aboutusFrontpage {
-  // For at få "\n" til at fungerer i aboutus-admin
   white-space: pre-wrap;
 }
 
-// ----- REVIEW PAGE -----
 .reviewBackground {
   background-image: url("/images/udtalelser-bg.jpg");
-  // filter: ;
-  box-shadow: inset 0 0 0 2000px #6cb04cc4;
+  box-shadow: inset 0 0 0 2000px rgba(108, 176, 76, 0.768627451);
   background-position: center center;
   background-size: cover;
   height: 100vh;
 }
 
 /* ----- SLIDER ------ */
-
 .carouselContainer {
   position: relative;
   overflow: hidden;
@@ -82,7 +74,6 @@
 .carousel-slide {
   width: 100%;
   position: absolute;
-
   --from: 0%;
   --to: 100%;
   animation-duration: 0.4s;
@@ -93,23 +84,15 @@
   from {
     left: var(--from);
   }
-
   to {
     left: 0;
   }
 }
-
 @keyframes prev {
   from {
     left: 0;
   }
-
   to {
     left: var(--to);
   }
-}
-
-.mapContainer{
-  width: 100%;
-  height: 100%;
-}
+}/*# sourceMappingURL=globals.css.map */

@@ -1,6 +1,6 @@
 "use client"
 import { useState, useEffect, FormEvent } from "react";
-import useRequestData from "../../../hooks/useRequestData";
+import useRequestData from "@/hooks/useRequestData";
 import Navbar from "@/components/Navbar";
 import { ReviewPOST, Review } from "@/interfaces/interface";
 
