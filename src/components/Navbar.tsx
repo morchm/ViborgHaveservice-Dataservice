@@ -28,7 +28,7 @@ export default function Navbar() {
         </li>
 
         <li className="hover:text-black cursor-pointer">
-            <Link href="/">Energidata</Link>
+            <Link href="/energy">Energidata</Link>
         </li>
 
       </menu>

@@ -17,6 +17,7 @@ export default function weather() {
   // --- useState
   const [zip, setZip] = useState("4000");
 
+
   // --- useEffect - GET
   useEffect(() => {
     makeRequest(
@@ -42,29 +43,31 @@ export default function weather() {
       // Figure out which day we are on
       let dayIndex = Math.floor(i / 8);
 
+      let date = new Date(e.dt_txt)
+
       //   Check if we are at the start of a new day
       if (i % 8 === 0) {
         //  Clear the temperatures array when we move to a new day. We reassign it to a NEW array so that each day has an unique temperature array.
         //  If we don't and instead use only one array but override the values then each day will have the same temperatures.
         dayTemp = [<></>];
 
-        minMax = {
-          min: a.reduce(
-            (a, b) => Math.min(a, Math.round(b.main.temp)),
-            Infinity
-          ),
-          max: a.reduce(
-            (a, b) => Math.max(a, Math.round(b.main.temp)),
-            -Infinity
-          ),
-        };
-        console.log(minMax);
+        // minMax = {
+        //   min: a.reduce(
+        //     (a, b) => Math.min(a, Math.round(b.main.temp)),
+        //     Infinity
+        //   ),
+        //   max: a.reduce(
+        //     (a, b) => Math.max(a, Math.round(b.main.temp)),
+        //     -Infinity
+        //   ),
+        // };
+        // console.log(minMax);
 
         // Create a new div for a new day at the start of a new day. This day contains the corresponding temperature entries
         dayWeather[dayIndex] = (
           <div
             key={e.dt}
-            className="day min-h-32 bg-green-200 rounded m-1 w-full flex justify-evenly">
+            className="max-h-32 bg-neutral-200 border-t-4 border-t-orange-300 rounded m-1 w-full flex justify-evenly">
             {dayTemp}
           </div>
         );
@@ -75,9 +78,10 @@ export default function weather() {
 
       //   Create div for each of the 40 entries for temperature
       dayTemp[tempDataIndex] = (
-        <div key={i} className="temp bg-red-200 w-1/12">
-          {" "}
-          {Math.round(e.main.temp)} °C
+        <div key={i} className="temp w-1/5 text-center p-3">
+          <p>{Math.round(e.main.temp)} °C <br/>
+          {date.toLocaleString()}
+          </p>
         </div>
       );
     });
