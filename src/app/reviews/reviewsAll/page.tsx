@@ -7,6 +7,8 @@ import { SetStateAction, useEffect, useState } from "react";
 import useRequestData from "@/hooks/useRequestData";
 import Navbar from "@/components/Navbar";
 import { Review } from "@/interfaces/interface";
+import Error from "@/components/Error";
+import Loading from "@/components/Loading";
 
 export default function Reviews() {
   const { data, isLoading, error, makeRequest } = useRequestData<[Review]>();
@@ -20,6 +22,8 @@ export default function Reviews() {
   return (
     <>
       <Navbar />
+      {error && <Error />}
+      {isLoading && <Loading />}
 
       <div className="reviewBackground">
         <div className="text-center text-white p-20">

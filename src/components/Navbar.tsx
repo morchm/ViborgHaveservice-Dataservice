@@ -20,11 +20,11 @@ export default function Navbar() {
         </div>
 
         <li className="hover:text-black cursor-pointer">
-            <Link href="/">Vejret</Link>
+            <Link href="/weather">Vejret</Link>
         </li>
 
         <li className="hover:text-black cursor-pointer">
-            <Link href="/">Nyheder</Link>
+            <Link href="/news">Nyheder</Link>
         </li>
 
         <li className="hover:text-black cursor-pointer">

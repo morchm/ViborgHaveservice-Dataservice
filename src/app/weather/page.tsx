@@ -4,6 +4,8 @@ import useRequestData from "@/hooks/useRequestData";
 import Navbar from "@/components/Navbar";
 import { OpenWeatherResponse } from "@/interfaces/interface";
 import LeafletMap from "./LeafletMap";
+import Error from "@/components/Error";
+import Loading from "@/components/Loading";
 
 export default function weather() {
   // --- useRequest
@@ -56,7 +58,7 @@ export default function weather() {
             -Infinity
           ),
         };
-        console.log(minMax)
+        console.log(minMax);
 
         // Create a new div for a new day at the start of a new day. This day contains the corresponding temperature entries
         dayWeather[dayIndex] = (
@@ -87,6 +89,8 @@ export default function weather() {
   return (
     <>
       <Navbar />
+      {error && <Error />}
+      {isLoading && <Loading />}
       <div className="grid grid-cols-2">
         {/* Map */}
         <section>

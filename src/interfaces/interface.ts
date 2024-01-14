@@ -71,7 +71,7 @@ export interface OpenWeather {
   dt_txt: string;
 }
 
- export interface OpenWeatherResponse {
+export interface OpenWeatherResponse {
   cod: string;
   message: number;
   cnt: number;
@@ -93,4 +93,25 @@ export interface OpenWeatherCity {
 interface OpenWeatherCoords {
   lat: number;
   lon: number;
+}
+
+// ---------- NEWSAPI ---------
+export interface NewsAPI {
+  source: {
+    id: string;
+    name: string;
+  };
+  author: string;
+  title: string;
+  description: string;
+  url: string;
+  urlToImage: string;
+  publishedAt: string;
+  content: string;
+}
+
+export interface NewsAPIResponse {
+  status: string;
+  totalResults: number;
+  articles: [NewsAPI];
 }
