@@ -80,7 +80,7 @@ export default function News() {
         {data &&
           data.articles.map(e => (
             // Article card
-            <div className="max-w-80 border-t-4 border-t-orange-400 rounded shadow-md m-4">
+            <div key={e.title} className="max-w-80 border-t-4 border-t-orange-400 rounded shadow-md m-4">
               <img
                 src={e.urlToImage || "/images/placeholder-image.jpg"}
                 className="w-full"

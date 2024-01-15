@@ -115,3 +115,20 @@ export interface NewsAPIResponse {
   totalResults: number;
   articles: [NewsAPI];
 }
+
+// ----------- ELSPOT ----------
+export interface Elspot {
+  HourUTC: string;
+  HourDK: string;
+  PriceArea: string;
+  SpotPriceDKK: number;
+  SpotPriceEUR: number;
+}
+
+export interface ElspotResponse {
+  total: number;
+  filters: string;
+  sort: string;
+  dataset: string;
+  records: [Elspot];
+}

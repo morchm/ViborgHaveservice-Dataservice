@@ -19,74 +19,76 @@ export default function weather() {
 
 
   // --- useEffect - GET
+  useEffect(()=>{
+    if( zip.length === 4 ) {
+      makeRequest(
+        "https://api.openweathermap.org/data/2.5/forecast?zip=" +
+          zip +
+          ",dk&appid=ce9282584cfaaac68fda86f7e2e24f70&units=metric",
+        "GET"
+      );
+    }
+  }, [zip])
+
   useEffect(() => {
-    makeRequest(
-      "https://api.openweathermap.org/data/2.5/forecast?zip=" +
-        zip +
-        ",dk&appid=ce9282584cfaaac68fda86f7e2e24f70&units=metric",
-      "GET"
-    );
-    makeRequestDAWA(
-      "https://api.dataforsyningen.dk/postnumre/autocomplete?q=" + zip,
-      "GET"
-    );
+   
+    
+
+        
+        makeRequestDAWA(
+          "https://api.dataforsyningen.dk/postnumre/autocomplete?q=" + zip,
+          "GET"
+        );
+    
   }, [zip]);
 
+  // ----- ORDEN PÅ 40 ENTRIES -----
   function createDays(data: OpenWeatherResponse) {
-    // Initialize two arrays. One for the days and one for the temperatures.
+    // Lav 2 arrays: Den ene er for dage og den anden er for temperaturerne.
     const dayWeather = [<></>];
     let dayTemp: [JSX.Element];
-    let minMax: { min: number; max: number };
 
-    // Loop through all 40 entries in the list ( 5 days times (24 hours divided by 3 hours) )
+    // Loop igennem alle 40 entries i listen ( 5 dage gange (24 timer : 3 timer) )
     data.list.forEach((e, i, a) => {
-      // Figure out which day we are on
+
+      // For at finde ud af, hvilken dag vi er på
       let dayIndex = Math.floor(i / 8);
 
       let date = new Date(e.dt_txt)
 
-      //   Check if we are at the start of a new day
+      // Check om en ny dag er startet
       if (i % 8 === 0) {
-        //  Clear the temperatures array when we move to a new day. We reassign it to a NEW array so that each day has an unique temperature array.
-        //  If we don't and instead use only one array but override the values then each day will have the same temperatures.
-        dayTemp = [<></>];
+        // Tøm temperatur-arrayet, hvis det er den næste dag. Den bliver reassigned til en NY array, so alle dage har deres unikke temperatur.
+        // Hvis ikke vi laver en ny, vil alle dage have den samme temperatur
+        dayTemp = [<></>]
 
-        // minMax = {
-        //   min: a.reduce(
-        //     (a, b) => Math.min(a, Math.round(b.main.temp)),
-        //     Infinity
-        //   ),
-        //   max: a.reduce(
-        //     (a, b) => Math.max(a, Math.round(b.main.temp)),
-        //     -Infinity
-        //   ),
-        // };
-        // console.log(minMax);
-
-        // Create a new div for a new day at the start of a new day. This day contains the corresponding temperature entries
+        // Lav en ny div for hver ny dag i starten af den nye dag. Altså kolonnerne for hver dag
         dayWeather[dayIndex] = (
-          <div
-            key={e.dt}
-            className="max-h-32 bg-neutral-200 border-t-4 border-t-orange-300 rounded m-1 w-full flex justify-evenly">
-            {dayTemp}
-          </div>
+          <>
+          <p className="text-center m-auto">Dato: {date.toLocaleDateString()}</p>
+            <div
+              key={e.dt}
+              className="max-h-32 bg-neutral-200 border-t-4 border-t-orange-300 rounded m-1 w-full flex justify-evenly">
+              {dayTemp}
+            </div>
+          </>
         );
       }
 
-      //   Figure out which temperature index for each individual day
+      // Find ud af hvilken temperatur-info der passer til hvert individuel dag.
       let tempDataIndex = i - dayIndex * 8;
 
-      //   Create div for each of the 40 entries for temperature
+      // Lav en ny div for hver af de 40 entries for temperatur-arrayet
       dayTemp[tempDataIndex] = (
         <div key={i} className="temp w-1/5 text-center p-3">
           <p>{Math.round(e.main.temp)} °C <br/>
-          {date.toLocaleString()}
+            {date.toLocaleTimeString()}
           </p>
         </div>
       );
     });
 
-    // Return all the days
+    // Return all days
     return dayWeather;
   }
 
@@ -100,11 +102,12 @@ export default function weather() {
         <section>
           {data && (
             <LeafletMap position={[data.city.coord.lat, data.city.coord.lon]} />
-          )}
+            )}
         </section>
 
         {/* Data */}
         <section className="flex flex-wrap">
+        <h1 className="font-bold text-3xl my-2 m-auto">Vejret</h1>
           <div className="flex flex-col w-full items-center text-center p-5">
             <input
               type="text"
@@ -116,8 +119,8 @@ export default function weather() {
               required
               pattern="[0-9]{4}"
               onChange={e => {
-                setZip(e.target.value);
-                //   setValid(e.target.checkValidity());
+                setZip(e.currentTarget.value);
+    
               }}
             />
             {data && <p>Vejret for: {data.city.name}</p>}
