@@ -105,7 +105,9 @@ export default function weather() {
       <Navbar />
       {error && <Error />}
       {isLoading && <Loading />}
+    
       <div className="grid grid-cols-2">
+
         {/* Map */}
         <section>
           {data && (
@@ -130,7 +132,7 @@ export default function weather() {
                 setZip(e.currentTarget.value);
               }}
             />
-            {data && <p>Vejret for: {data.city.name}</p>}
+              {data && <p>Vejret for: {data.city.name}</p>}
           </div>
 
           <datalist id="listPostnr">
@@ -143,6 +145,7 @@ export default function weather() {
 
           {data && createDays(data)}
         </section>
+        
       </div>
     </>
   );
