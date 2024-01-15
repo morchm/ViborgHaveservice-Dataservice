@@ -25,7 +25,7 @@ export default function Reviews() {
       {error && <Error />}
       {isLoading && <Loading />}
 
-      <div className="reviewBackground">
+      <div className="reviewBackground flex flex-col justify-center">
         <div className="text-center text-white p-20">
           <h2 className="font-bold text-3xl">Kundeudtalelser</h2>
           {/* --- REVIEWS CARD --- */}

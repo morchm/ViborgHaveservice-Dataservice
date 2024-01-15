@@ -13,7 +13,7 @@ export default function Loading(){
       return (
         // Dialog - Har allerede en set-setting hvor boksen vil være i midten af hjemmesiden
         <dialog ref={modalRef}>
-          <div className="loader" id="loader-2">
+          <div className="w-28 h-28 rounded-full" id="loader-2">
             <span></span>
             <span></span>
             <span></span>

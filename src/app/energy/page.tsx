@@ -10,8 +10,8 @@ export default function EnergiData() {
     useRequestData<ElspotResponse>();
 
     const [ area, setArea ] = useState("dk1")
-    const [ startDate, setStartDate ] = useState("2023-12-01T00:00")
-    const [ endDate, setEndDate ] = useState("2023-12-31T00:00")
+    const [ startDate, setStartDate ] = useState("2023-12-30")
+    const [ endDate, setEndDate ] = useState("2023-12-31")
 
 
   // --- useRequest
@@ -51,7 +51,6 @@ export default function EnergiData() {
         </select>
 
         <p >Priser mellem datoerne: <span className="font-bold text-blue-500">{startDate}</span>  og <span className="font-bold text-blue-500">{endDate}</span></p>
-        <p>Area: <span className="font-bold text-blue-500">{area}</span></p>
       </div>
 
       {/* Data-card */}
@@ -60,6 +59,7 @@ export default function EnergiData() {
           data.records.map(e => (
             <div className="w-80 shadow-md p-5 border-t-4 border-t-purple-600 m-3 text-center">
               <p>Tid: <span className="text-gray-400">{e.HourDK}</span> </p>
+              <p>Area: {e.PriceArea}</p>
               <p>Pris: {Math.round(e.SpotPriceDKK)} DKK / {Math.round(e.SpotPriceEUR)} EUR per MWh</p>
             </div>
           ))}
