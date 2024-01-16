@@ -22,7 +22,7 @@ export default function reviewsAdmin() {
   // --- GET alle reviews ---
   useEffect(() => {
     makeRequest("http://localhost:5023/reviews", "GET");
-  }, []);
+  }, [dataDELETE]);
 
   //  --- HandleDelete ---
   const handleDelete = (review: Review) => {
